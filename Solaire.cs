@@ -17,37 +17,37 @@ namespace Solaire1
         private void Solaire_Load(object sender, EventArgs e)
         {
             lblSolVerValue.Text = "Initializing...";
-        }
-
-        private string RunCommand(string command)
-        {
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-            cmd.Start();
-
-            cmd.StandardInput.WriteLine(command);
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-            cmd.WaitForExit();
-            return ParseCmdResponse(cmd.StandardOutput.ReadToEnd(), command);
-        }
-
-        private string ParseCmdResponse(string response, string command)
-        {
-            string dirName = Path.GetDirectoryName(Application.ExecutablePath);
-            int startIndex = response.IndexOf(command) + command.Length + 2;
-            return response.Substring(startIndex, response.IndexOf(dirName, startIndex) - (3 + startIndex));
-        }
+        }       
 
         private void Solaire_Shown(object sender, EventArgs e)
         {
-            lblSolVerValue.Text = RunCommand("solana --version").Split(' ')[1];
-            lblDefaultAddressValue.Text = RunCommand("solana address");
-            lblBalanceValue.Text = RunCommand("solana balance");
+            lblSolVerValue.Text = Utils.RunCommand("solana --version").Split(' ')[1];
+            lblDefaultAddressValue.Text = Utils.RunCommand("solana address");
+            lblBalanceValue.Text = Utils.RunCommand("solana balance");
+        }
+
+        private void btnLoadAddress_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fdlg = new OpenFileDialog();
+            fdlg.Title = "Open the keypair file";
+            fdlg.InitialDirectory = @"c:\";
+            fdlg.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            fdlg.FilterIndex = 1;
+            fdlg.RestoreDirectory = true;
+            if (fdlg.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(fdlg.FileName);
+            }
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new Options()).ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
