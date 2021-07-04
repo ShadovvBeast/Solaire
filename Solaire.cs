@@ -18,12 +18,15 @@ namespace Solaire1
         {
             lblSolVerValue.Text = "Initializing...";
         }       
-
-        private void Solaire_Shown(object sender, EventArgs e)
+        private void Init()
         {
             lblSolVerValue.Text = Utils.RunCommand("solana --version").Split(' ')[1];
             lblDefaultAddressValue.Text = Utils.RunCommand("solana address");
             lblBalanceValue.Text = Utils.RunCommand("solana balance");
+        }
+        private void Solaire_Shown(object sender, EventArgs e)
+        {
+            Init();
         }
 
         private void btnLoadAddress_Click(object sender, EventArgs e)
@@ -42,7 +45,12 @@ namespace Solaire1
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new Options()).ShowDialog();
+            var dlgrOptions = (new Options()).ShowDialog();
+            if (dlgrOptions == DialogResult.Cancel)
+            {
+                Init();
+            }
+            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
