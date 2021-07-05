@@ -1,5 +1,5 @@
 ﻿
-namespace Solaire1
+namespace Solaire
 {
     partial class Options
     {

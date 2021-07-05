@@ -5,10 +5,11 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 
-namespace Solaire1
+namespace Solaire
 {
     public partial class Solaire : Form
     {
+        string address;
         public Solaire()
         {
             InitializeComponent();
@@ -20,9 +21,11 @@ namespace Solaire1
         }       
         private void Init()
         {
+            Cursor.Current = Cursors.WaitCursor;
             lblSolVerValue.Text = Utils.RunCommand("solana --version").Split(' ')[1];
-            lblDefaultAddressValue.Text = Utils.RunCommand("solana address");
+            address = lblDefaultAddressValue.Text = Utils.RunCommand("solana address");
             lblBalanceValue.Text = Utils.RunCommand("solana balance");
+            Cursor.Current = Cursors.Default;
         }
         private void Solaire_Shown(object sender, EventArgs e)
         {
@@ -56,6 +59,20 @@ namespace Solaire1
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnAirdrop_Click(object sender, EventArgs e)
+        {
+            var dlgAirDrop = new Airdrop();
+            var dlgrAirdrop = dlgAirDrop.ShowDialog();
+            if (dlgrAirdrop == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Utils.RunCommand("solana airdrop " + ((NumericUpDown)dlgAirDrop.Controls.Find("nudAmount", true)[0]).Value + " " + address);
+                lblBalanceValue.Text = Utils.RunCommand("solana balance");
+                Cursor.Current = Cursors.Default;
+            }
+
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Solaire1
+namespace Solaire
 {
     public partial class Options : Form
     {
