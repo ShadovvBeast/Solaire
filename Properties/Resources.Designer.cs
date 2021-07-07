@@ -59,5 +59,15 @@ namespace Solaire.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap praise_the_sun {
+            get {
+                object obj = ResourceManager.GetObject("praise_the_sun", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

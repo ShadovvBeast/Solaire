@@ -35,7 +35,7 @@
             this.lblDefaultAddressValue = new System.Windows.Forms.Label();
             this.lblBalanceValue = new System.Windows.Forms.Label();
             this.lblCurrentBalanceTxt = new System.Windows.Forms.Label();
-            this.btnLoadAddress = new System.Windows.Forms.Button();
+            this.btnLoadKeypair = new System.Windows.Forms.Button();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,18 +117,18 @@
             this.lblCurrentBalanceTxt.TabIndex = 4;
             this.lblCurrentBalanceTxt.Text = "Balance:";
             // 
-            // btnLoadAddress
+            // btnLoadKeypair
             // 
-            this.btnLoadAddress.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnLoadAddress.FlatAppearance.BorderSize = 0;
-            this.btnLoadAddress.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLoadAddress.Location = new System.Drawing.Point(160, 145);
-            this.btnLoadAddress.Name = "btnLoadAddress";
-            this.btnLoadAddress.Size = new System.Drawing.Size(102, 25);
-            this.btnLoadAddress.TabIndex = 6;
-            this.btnLoadAddress.Text = "Load Address";
-            this.btnLoadAddress.UseVisualStyleBackColor = false;
-            this.btnLoadAddress.Click += new System.EventHandler(this.btnLoadAddress_Click);
+            this.btnLoadKeypair.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnLoadKeypair.FlatAppearance.BorderSize = 0;
+            this.btnLoadKeypair.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLoadKeypair.Location = new System.Drawing.Point(160, 145);
+            this.btnLoadKeypair.Name = "btnLoadKeypair";
+            this.btnLoadKeypair.Size = new System.Drawing.Size(102, 25);
+            this.btnLoadKeypair.TabIndex = 6;
+            this.btnLoadKeypair.Text = "Load Keypair";
+            this.btnLoadKeypair.UseVisualStyleBackColor = false;
+            this.btnLoadKeypair.Click += new System.EventHandler(this.btnLoadAddress_Click);
             // 
             // msMain
             // 
@@ -258,13 +258,14 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // btnAirdrop
             // 
@@ -307,7 +308,7 @@
             this.Controls.Add(this.lblClusterValue);
             this.Controls.Add(this.lblClusterText);
             this.Controls.Add(this.btnAirdrop);
-            this.Controls.Add(this.btnLoadAddress);
+            this.Controls.Add(this.btnLoadKeypair);
             this.Controls.Add(this.lblBalanceValue);
             this.Controls.Add(this.lblCurrentBalanceTxt);
             this.Controls.Add(this.lblDefaultAddressValue);
@@ -321,7 +322,7 @@
             this.MainMenuStrip = this.msMain;
             this.MaximizeBox = false;
             this.Name = "Solaire";
-            this.Text = "Solaire";
+            this.Text = " Solaire";
             this.Load += new System.EventHandler(this.Solaire_Load);
             this.Shown += new System.EventHandler(this.Solaire_Shown);
             this.msMain.ResumeLayout(false);
@@ -339,7 +340,7 @@
         private System.Windows.Forms.Label lblDefaultAddressValue;
         private System.Windows.Forms.Label lblBalanceValue;
         private System.Windows.Forms.Label lblCurrentBalanceTxt;
-        private System.Windows.Forms.Button btnLoadAddress;
+        private System.Windows.Forms.Button btnLoadKeypair;
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;

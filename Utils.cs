@@ -34,10 +34,17 @@ namespace Solaire
 
         public static string RunCommand(string command)
         {
+            string dummy;
+            return RunCommand(command, out dummy);
+        }
+
+        public static string RunCommand(string command, out string error)
+        {
             Process cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.RedirectStandardError = true;
             cmd.StartInfo.CreateNoWindow = true;
             cmd.StartInfo.UseShellExecute = false;
             cmd.Start();
@@ -45,8 +52,10 @@ namespace Solaire
             cmd.StandardInput.WriteLine(command);
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
+            var output = cmd.StandardOutput.ReadToEnd();
+            error = cmd.StandardError.ReadToEnd();
             cmd.WaitForExit();
-            return ParseCmdResponse(cmd.StandardOutput.ReadToEnd(), command);
+            return ParseCmdResponse(output, command);
         }
 
         public static string getConfigItemValue(string item)

@@ -76,11 +76,19 @@ namespace Solaire
             if (dlgrAirdrop == DialogResult.OK)
             {
                 Cursor.Current = Cursors.WaitCursor;
-                Utils.RunCommand("solana airdrop " + ((NumericUpDown)dlgAirDrop.Controls.Find("nudAmount", true)[0]).Value + " " + address);
+                string error;
+                Utils.RunCommand("solana airdrop " + ((NumericUpDown)dlgAirDrop.Controls.Find("nudAmount", true)[0]).Value + " " + address, out error).Split('\n');
+                if (error.Length > 0)
+                    MessageBox.Show(error, "An error has occured", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lblBalanceValue.Text = Utils.RunCommand("solana balance");
                 Cursor.Current = Cursors.Default;
             }
 
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new About()).ShowDialog();
         }
     }
 }
