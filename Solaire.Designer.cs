@@ -31,22 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Solaire));
             this.lblSolVerText = new System.Windows.Forms.Label();
             this.lblSolVerValue = new System.Windows.Forms.Label();
-            this.lblDefaultAddressTxt = new System.Windows.Forms.Label();
-            this.lblDefaultAddressValue = new System.Windows.Forms.Label();
+            this.lblAddressTxt = new System.Windows.Forms.Label();
+            this.lblAddressValue = new System.Windows.Forms.Label();
             this.lblBalanceValue = new System.Windows.Forms.Label();
             this.lblCurrentBalanceTxt = new System.Windows.Forms.Label();
-            this.btnLoadKeypair = new System.Windows.Forms.Button();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +49,9 @@
             this.btnAirdrop = new System.Windows.Forms.Button();
             this.lblClusterValue = new System.Windows.Forms.Label();
             this.lblClusterText = new System.Windows.Forms.Label();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnCopyAddress = new System.Windows.Forms.Button();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,24 +74,24 @@
             this.lblSolVerValue.Size = new System.Drawing.Size(0, 37);
             this.lblSolVerValue.TabIndex = 1;
             // 
-            // lblDefaultAddressTxt
+            // lblAddressTxt
             // 
-            this.lblDefaultAddressTxt.AutoSize = true;
-            this.lblDefaultAddressTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblDefaultAddressTxt.Location = new System.Drawing.Point(12, 136);
-            this.lblDefaultAddressTxt.Name = "lblDefaultAddressTxt";
-            this.lblDefaultAddressTxt.Size = new System.Drawing.Size(144, 37);
-            this.lblDefaultAddressTxt.TabIndex = 2;
-            this.lblDefaultAddressTxt.Text = "Address:";
+            this.lblAddressTxt.AutoSize = true;
+            this.lblAddressTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblAddressTxt.Location = new System.Drawing.Point(12, 136);
+            this.lblAddressTxt.Name = "lblAddressTxt";
+            this.lblAddressTxt.Size = new System.Drawing.Size(144, 37);
+            this.lblAddressTxt.TabIndex = 2;
+            this.lblAddressTxt.Text = "Address:";
             // 
-            // lblDefaultAddressValue
+            // lblAddressValue
             // 
-            this.lblDefaultAddressValue.AutoSize = true;
-            this.lblDefaultAddressValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblDefaultAddressValue.Location = new System.Drawing.Point(16, 173);
-            this.lblDefaultAddressValue.Name = "lblDefaultAddressValue";
-            this.lblDefaultAddressValue.Size = new System.Drawing.Size(0, 17);
-            this.lblDefaultAddressValue.TabIndex = 3;
+            this.lblAddressValue.AutoSize = true;
+            this.lblAddressValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblAddressValue.Location = new System.Drawing.Point(16, 173);
+            this.lblAddressValue.Name = "lblAddressValue";
+            this.lblAddressValue.Size = new System.Drawing.Size(0, 17);
+            this.lblAddressValue.TabIndex = 3;
             // 
             // lblBalanceValue
             // 
@@ -117,19 +113,6 @@
             this.lblCurrentBalanceTxt.TabIndex = 4;
             this.lblCurrentBalanceTxt.Text = "Balance:";
             // 
-            // btnLoadKeypair
-            // 
-            this.btnLoadKeypair.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnLoadKeypair.FlatAppearance.BorderSize = 0;
-            this.btnLoadKeypair.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLoadKeypair.Location = new System.Drawing.Point(160, 145);
-            this.btnLoadKeypair.Name = "btnLoadKeypair";
-            this.btnLoadKeypair.Size = new System.Drawing.Size(102, 25);
-            this.btnLoadKeypair.TabIndex = 6;
-            this.btnLoadKeypair.Text = "Load Keypair";
-            this.btnLoadKeypair.UseVisualStyleBackColor = false;
-            this.btnLoadKeypair.Click += new System.EventHandler(this.btnLoadAddress_Click);
-            // 
             // msMain
             // 
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -138,7 +121,7 @@
             this.helpToolStripMenuItem});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(400, 24);
+            this.msMain.Size = new System.Drawing.Size(433, 24);
             this.msMain.TabIndex = 7;
             this.msMain.Text = "menuStrip1";
             // 
@@ -148,12 +131,6 @@
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.toolStripSeparator,
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.printToolStripMenuItem,
-            this.printPreviewToolStripMenuItem,
-            this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -165,8 +142,9 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.newToolStripMenuItem.Text = "&New Keypair";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -174,60 +152,19 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.openToolStripMenuItem.Text = "&Load Keypair";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.saveAsToolStripMenuItem.Text = "Save &As";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.printToolStripMenuItem.Text = "&Print";
-            // 
-            // printPreviewToolStripMenuItem
-            // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(182, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -258,12 +195,12 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(113, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -272,7 +209,7 @@
             this.btnAirdrop.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnAirdrop.FlatAppearance.BorderSize = 0;
             this.btnAirdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAirdrop.Location = new System.Drawing.Point(269, 145);
+            this.btnAirdrop.Location = new System.Drawing.Point(161, 143);
             this.btnAirdrop.Name = "btnAirdrop";
             this.btnAirdrop.Size = new System.Drawing.Size(102, 25);
             this.btnAirdrop.TabIndex = 8;
@@ -299,20 +236,63 @@
             this.lblClusterText.TabIndex = 9;
             this.lblClusterText.Text = "Cluster:";
             // 
+            // btnTransfer
+            // 
+            this.btnTransfer.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnTransfer.FlatAppearance.BorderSize = 0;
+            this.btnTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTransfer.Location = new System.Drawing.Point(19, 254);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(102, 25);
+            this.btnTransfer.TabIndex = 11;
+            this.btnTransfer.Text = "Transfer";
+            this.btnTransfer.UseVisualStyleBackColor = false;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnRefresh.BackgroundImage = global::Solaire.Properties.Resources.refresh24;
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRefresh.Location = new System.Drawing.Point(393, 27);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(30, 30);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnCopyAddress
+            // 
+            this.btnCopyAddress.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnCopyAddress.BackgroundImage = global::Solaire.Properties.Resources.copy;
+            this.btnCopyAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCopyAddress.FlatAppearance.BorderSize = 0;
+            this.btnCopyAddress.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCopyAddress.Location = new System.Drawing.Point(391, 166);
+            this.btnCopyAddress.Name = "btnCopyAddress";
+            this.btnCopyAddress.Size = new System.Drawing.Size(30, 30);
+            this.btnCopyAddress.TabIndex = 13;
+            this.btnCopyAddress.UseVisualStyleBackColor = false;
+            this.btnCopyAddress.Click += new System.EventHandler(this.btnCopyAddress_Click);
+            // 
             // Solaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(400, 622);
+            this.ClientSize = new System.Drawing.Size(433, 622);
+            this.Controls.Add(this.btnCopyAddress);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.lblClusterValue);
             this.Controls.Add(this.lblClusterText);
             this.Controls.Add(this.btnAirdrop);
-            this.Controls.Add(this.btnLoadKeypair);
             this.Controls.Add(this.lblBalanceValue);
             this.Controls.Add(this.lblCurrentBalanceTxt);
-            this.Controls.Add(this.lblDefaultAddressValue);
-            this.Controls.Add(this.lblDefaultAddressTxt);
+            this.Controls.Add(this.lblAddressValue);
+            this.Controls.Add(this.lblAddressTxt);
             this.Controls.Add(this.lblSolVerValue);
             this.Controls.Add(this.lblSolVerText);
             this.Controls.Add(this.msMain);
@@ -336,22 +316,15 @@
 
         private System.Windows.Forms.Label lblSolVerText;
         private System.Windows.Forms.Label lblSolVerValue;
-        private System.Windows.Forms.Label lblDefaultAddressTxt;
-        private System.Windows.Forms.Label lblDefaultAddressValue;
+        private System.Windows.Forms.Label lblAddressTxt;
+        private System.Windows.Forms.Label lblAddressValue;
         private System.Windows.Forms.Label lblBalanceValue;
         private System.Windows.Forms.Label lblCurrentBalanceTxt;
-        private System.Windows.Forms.Button btnLoadKeypair;
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
@@ -361,6 +334,9 @@
         private System.Windows.Forms.Button btnAirdrop;
         private System.Windows.Forms.Label lblClusterValue;
         private System.Windows.Forms.Label lblClusterText;
+        private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnCopyAddress;
     }
 }
 

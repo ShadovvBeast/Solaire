@@ -70,7 +70,7 @@ namespace Solaire
             // 
             this.lblGithub.AutoSize = true;
             this.lblGithub.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.lblGithub.Location = new System.Drawing.Point(209, 471);
+            this.lblGithub.Location = new System.Drawing.Point(224, 471);
             this.lblGithub.Name = "lblGithub";
             this.lblGithub.Size = new System.Drawing.Size(40, 13);
             this.lblGithub.TabIndex = 3;
@@ -94,6 +94,7 @@ namespace Solaire
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
             ((System.ComponentModel.ISupportInitialize)(this.pbPraise)).EndInit();
             this.ResumeLayout(false);

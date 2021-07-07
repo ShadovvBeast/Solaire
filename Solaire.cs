@@ -11,6 +11,7 @@ namespace Solaire
     {
         string address;
         char cluster;
+        string path;
         public Solaire()
         {
             InitializeComponent();
@@ -24,9 +25,12 @@ namespace Solaire
         {
             Cursor.Current = Cursors.WaitCursor;
             lblSolVerValue.Text = Utils.RunCommand("solana --version").Split(' ')[1];
-            address = lblDefaultAddressValue.Text = Utils.RunCommand("solana address");
-            lblBalanceValue.Text = Utils.RunCommand("solana balance");
             var configArr = Utils.RunCommand("solana config get").Split('\n');
+            if (path == null)
+                path = Utils.getConfigItemValue(configArr[3]);
+            address = lblAddressValue.Text = Utils.RunCommand("solana address --keypair " + path);
+            lblBalanceValue.Text = Utils.RunCommand("solana balance " + path);
+            
             var clusterName = lblClusterValue.Text = Utils.dClusterUrlToName[Utils.getConfigItemValue(configArr[1])];
             cluster = clusterName.ToLower()[0];
             if (cluster == 'm')
@@ -42,16 +46,6 @@ namespace Solaire
 
         private void btnLoadAddress_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fdlg = new OpenFileDialog();
-            fdlg.Title = "Open the keypair file";
-            fdlg.InitialDirectory = @"c:\";
-            fdlg.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
-            fdlg.FilterIndex = 1;
-            fdlg.RestoreDirectory = true;
-            if (fdlg.ShowDialog() == DialogResult.OK)
-            {
-                MessageBox.Show(fdlg.FileName);
-            }
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -89,6 +83,64 @@ namespace Solaire
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new About()).ShowDialog();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fdlg = new OpenFileDialog();
+            fdlg.Title = "Open the keypair file";
+            //fdlg.InitialDirectory = @"c:\";
+            fdlg.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            fdlg.FilterIndex = 1;
+            fdlg.RestoreDirectory = true;
+            if (fdlg.ShowDialog() == DialogResult.OK)
+            {
+                path = fdlg.FileName;
+                Init();
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfdlg = new SaveFileDialog();
+            sfdlg.Title = "Save keypair file";
+            sfdlg.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+            sfdlg.FilterIndex = 1;
+            sfdlg.RestoreDirectory = true;
+            if (sfdlg.ShowDialog() == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                var newArr = Utils.RunCommand("solana-keygen new --no-passphrase -o " + sfdlg.FileName).Split('\n');
+                address = Utils.getConfigItemValue(newArr[3]);
+                path = sfdlg.FileName;
+                MessageBox.Show("Please save this seed phrase:" + Environment.NewLine + newArr[6], "Seed phrase", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Init();
+            }
+
+        }
+
+        private void btnTransfer_Click(object sender, EventArgs e)
+        {
+            var dlgTransfer = new Transfer();
+            var dlgrTransfer = dlgTransfer.ShowDialog();
+            if (dlgrTransfer == DialogResult.OK)
+            {
+                var to_address = ((TextBox)dlgTransfer.Controls.Find("txtAddress", true)[0]).Text;
+                var amount = ((NumericUpDown)dlgTransfer.Controls.Find("nudAmount", true)[0]).Value;
+                var response = Utils.RunCommand("solana transfer --from " + path + " " + to_address + " " + amount + " --allow-unfunded-recipient --fee-payer " + path);
+                MessageBox.Show(response, "Signature", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Init();
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Init();
+        }
+
+        private void btnCopyAddress_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(address);
         }
     }
 }
