@@ -10,6 +10,7 @@ namespace Solaire
     public partial class Solaire : Form
     {
         string address;
+        char cluster;
         public Solaire()
         {
             InitializeComponent();
@@ -25,6 +26,13 @@ namespace Solaire
             lblSolVerValue.Text = Utils.RunCommand("solana --version").Split(' ')[1];
             address = lblDefaultAddressValue.Text = Utils.RunCommand("solana address");
             lblBalanceValue.Text = Utils.RunCommand("solana balance");
+            var configArr = Utils.RunCommand("solana config get").Split('\n');
+            var clusterName = lblClusterValue.Text = Utils.dClusterUrlToName[Utils.getConfigItemValue(configArr[1])];
+            cluster = clusterName.ToLower()[0];
+            if (cluster == 'm')
+                btnAirdrop.Enabled = false;
+            else
+                btnAirdrop.Enabled = true;
             Cursor.Current = Cursors.Default;
         }
         private void Solaire_Shown(object sender, EventArgs e)
@@ -63,7 +71,7 @@ namespace Solaire
 
         private void btnAirdrop_Click(object sender, EventArgs e)
         {
-            var dlgAirDrop = new Airdrop();
+            var dlgAirDrop = new Airdrop(cluster);
             var dlgrAirdrop = dlgAirDrop.ShowDialog();
             if (dlgrAirdrop == DialogResult.OK)
             {

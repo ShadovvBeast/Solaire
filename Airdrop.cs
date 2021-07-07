@@ -12,9 +12,11 @@ namespace Solaire
 {
     public partial class Airdrop : Form
     {
-        public Airdrop()
+        public Airdrop(char cluster)
         {
             InitializeComponent();
+            if (cluster == 't')
+                nudAmount.Maximum = 1;
         }
 
         private void btnAirdrop_Click(object sender, EventArgs e)

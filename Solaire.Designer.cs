@@ -54,6 +54,8 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAirdrop = new System.Windows.Forms.Button();
+            this.lblClusterValue = new System.Windows.Forms.Label();
+            this.lblClusterText = new System.Windows.Forms.Label();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +82,7 @@
             // 
             this.lblDefaultAddressTxt.AutoSize = true;
             this.lblDefaultAddressTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblDefaultAddressTxt.Location = new System.Drawing.Point(12, 100);
+            this.lblDefaultAddressTxt.Location = new System.Drawing.Point(12, 136);
             this.lblDefaultAddressTxt.Name = "lblDefaultAddressTxt";
             this.lblDefaultAddressTxt.Size = new System.Drawing.Size(144, 37);
             this.lblDefaultAddressTxt.TabIndex = 2;
@@ -90,7 +92,7 @@
             // 
             this.lblDefaultAddressValue.AutoSize = true;
             this.lblDefaultAddressValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblDefaultAddressValue.Location = new System.Drawing.Point(16, 137);
+            this.lblDefaultAddressValue.Location = new System.Drawing.Point(16, 173);
             this.lblDefaultAddressValue.Name = "lblDefaultAddressValue";
             this.lblDefaultAddressValue.Size = new System.Drawing.Size(0, 17);
             this.lblDefaultAddressValue.TabIndex = 3;
@@ -99,7 +101,7 @@
             // 
             this.lblBalanceValue.AutoSize = true;
             this.lblBalanceValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblBalanceValue.Location = new System.Drawing.Point(153, 183);
+            this.lblBalanceValue.Location = new System.Drawing.Point(152, 201);
             this.lblBalanceValue.Name = "lblBalanceValue";
             this.lblBalanceValue.Size = new System.Drawing.Size(184, 37);
             this.lblBalanceValue.TabIndex = 5;
@@ -109,7 +111,7 @@
             // 
             this.lblCurrentBalanceTxt.AutoSize = true;
             this.lblCurrentBalanceTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblCurrentBalanceTxt.Location = new System.Drawing.Point(12, 183);
+            this.lblCurrentBalanceTxt.Location = new System.Drawing.Point(11, 201);
             this.lblCurrentBalanceTxt.Name = "lblCurrentBalanceTxt";
             this.lblCurrentBalanceTxt.Size = new System.Drawing.Size(141, 37);
             this.lblCurrentBalanceTxt.TabIndex = 4;
@@ -120,7 +122,7 @@
             this.btnLoadAddress.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnLoadAddress.FlatAppearance.BorderSize = 0;
             this.btnLoadAddress.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLoadAddress.Location = new System.Drawing.Point(160, 109);
+            this.btnLoadAddress.Location = new System.Drawing.Point(160, 145);
             this.btnLoadAddress.Name = "btnLoadAddress";
             this.btnLoadAddress.Size = new System.Drawing.Size(102, 25);
             this.btnLoadAddress.TabIndex = 6;
@@ -269,7 +271,7 @@
             this.btnAirdrop.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnAirdrop.FlatAppearance.BorderSize = 0;
             this.btnAirdrop.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAirdrop.Location = new System.Drawing.Point(269, 109);
+            this.btnAirdrop.Location = new System.Drawing.Point(269, 145);
             this.btnAirdrop.Name = "btnAirdrop";
             this.btnAirdrop.Size = new System.Drawing.Size(102, 25);
             this.btnAirdrop.TabIndex = 8;
@@ -277,12 +279,33 @@
             this.btnAirdrop.UseVisualStyleBackColor = false;
             this.btnAirdrop.Click += new System.EventHandler(this.btnAirdrop_Click);
             // 
+            // lblClusterValue
+            // 
+            this.lblClusterValue.AutoSize = true;
+            this.lblClusterValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblClusterValue.Location = new System.Drawing.Point(134, 82);
+            this.lblClusterValue.Name = "lblClusterValue";
+            this.lblClusterValue.Size = new System.Drawing.Size(0, 37);
+            this.lblClusterValue.TabIndex = 10;
+            // 
+            // lblClusterText
+            // 
+            this.lblClusterText.AutoSize = true;
+            this.lblClusterText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblClusterText.Location = new System.Drawing.Point(11, 82);
+            this.lblClusterText.Name = "lblClusterText";
+            this.lblClusterText.Size = new System.Drawing.Size(127, 37);
+            this.lblClusterText.TabIndex = 9;
+            this.lblClusterText.Text = "Cluster:";
+            // 
             // Solaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(400, 622);
+            this.Controls.Add(this.lblClusterValue);
+            this.Controls.Add(this.lblClusterText);
             this.Controls.Add(this.btnAirdrop);
             this.Controls.Add(this.btnLoadAddress);
             this.Controls.Add(this.lblBalanceValue);
@@ -335,6 +358,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnAirdrop;
+        private System.Windows.Forms.Label lblClusterValue;
+        private System.Windows.Forms.Label lblClusterText;
     }
 }
 
