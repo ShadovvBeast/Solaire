@@ -27,9 +27,18 @@ namespace Solaire
             string dirName = Path.GetDirectoryName(Application.ExecutablePath);
             int startIndex = response.IndexOf(command) + command.Length + 2;
             int dirnameIndex = response.IndexOf(dirName, startIndex);
-            if (dirnameIndex == -1)
-                throw new Exception("Error parsing cmd response");
-            return response.Substring(startIndex, dirnameIndex - (3 + startIndex));
+            return response.Substring(startIndex, dirnameIndex - (2 + startIndex)).Trim();
+        }
+
+        public static void ExecuteAsAdmin(string fileName, string arguments)
+        {
+            Process proc = new Process();
+            proc.StartInfo.FileName = fileName;
+            proc.StartInfo.Arguments = arguments;
+            proc.StartInfo.UseShellExecute = true;
+            proc.StartInfo.Verb = "runas";
+            proc.Start();
+            proc.WaitForExit();
         }
 
         public static string RunCommand(string command)

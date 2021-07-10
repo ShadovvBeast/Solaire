@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
 
 namespace Solaire
 {
@@ -21,10 +17,43 @@ namespace Solaire
         {
             lblSolVerValue.Text = "Initializing...";
         }       
-        private void Init()
+        private async void Init()
         {
             Cursor.Current = Cursors.WaitCursor;
-            lblSolVerValue.Text = Utils.RunCommand("solana --version").Split(' ')[1];
+            string sError = "";
+            string cli_version = Utils.RunCommand("solana --version", out sError);
+            if (cli_version == "")
+            {
+                DialogResult drInstall = MessageBox.Show("Solana not installed, would you like to install it?", "Install Solana CLI", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (drInstall == DialogResult.No)
+                {
+                    Application.Exit();
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        lblSolVerValue.Text = "Installing...";
+
+                        var client = new Octokit.GitHubClient(new Octokit.ProductHeaderValue("solaire"));
+                        var release = await client.Repository.Release.GetLatest("solana-labs", "solana");
+                        Application.DoEvents();
+                        Utils.RunCommand($"curl https://release.solana.com/{release.TagName}/solana-install-init-x86_64-pc-windows-msvc.exe --output C:\\solana-install-tmp\\solana-install-init.exe --create-dirs");
+                        Utils.ExecuteAsAdmin(@"C:\solana-install-tmp\solana-install-init.exe", release.TagName);
+                        
+                        Init();
+                        return;
+                    }
+                    catch (Exception e)
+                    {
+                        Application.Exit();
+                        return;
+                    }
+                }
+
+            }
+            lblSolVerValue.Text = cli_version.Split(' ')[1];
             var configArr = Utils.RunCommand("solana config get").Split('\n');
             if (path == null)
                 path = Utils.getConfigItemValue(configArr[3]);
