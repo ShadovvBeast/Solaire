@@ -121,7 +121,7 @@ namespace Solaire
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
-            var dlgTransfer = new Transfer();
+            var dlgTransfer = new Transfer(decimal.Parse(lblBalanceValue.Text.Split(' ')[0]));
             var dlgrTransfer = dlgTransfer.ShowDialog();
             if (dlgrTransfer == DialogResult.OK)
             {

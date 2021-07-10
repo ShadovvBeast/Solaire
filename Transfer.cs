@@ -12,9 +12,10 @@ namespace Solaire
 {
     public partial class Transfer : Form
     {
-        public Transfer()
+        public Transfer(decimal balance)
         {
             InitializeComponent();
+            nudAmount.Maximum = balance;
         }
     }
 }
