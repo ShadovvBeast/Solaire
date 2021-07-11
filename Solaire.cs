@@ -15,10 +15,11 @@ namespace Solaire
 
         private void Solaire_Load(object sender, EventArgs e)
         {
-            lblSolVerValue.Text = "Initializing...";
+            lblSolVerValue.Text = "Init...";
         }       
         private async void Init()
         {
+            Application.DoEvents();
             Cursor.Current = Cursors.WaitCursor;
             string sError = "";
             string cli_version = Utils.RunCommand("solana --version", out sError);
@@ -47,6 +48,7 @@ namespace Solaire
                     }
                     catch (Exception e)
                     {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Application.Exit();
                         return;
                     }

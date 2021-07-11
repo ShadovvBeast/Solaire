@@ -69,7 +69,7 @@
             // 
             this.lblSolVerValue.AutoSize = true;
             this.lblSolVerValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblSolVerValue.Location = new System.Drawing.Point(262, 33);
+            this.lblSolVerValue.Location = new System.Drawing.Point(249, 33);
             this.lblSolVerValue.Name = "lblSolVerValue";
             this.lblSolVerValue.Size = new System.Drawing.Size(0, 37);
             this.lblSolVerValue.TabIndex = 1;
@@ -179,7 +179,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.optionsToolStripMenuItem.Text = "&Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
